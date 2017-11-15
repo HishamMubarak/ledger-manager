@@ -1,0 +1,46 @@
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="row">
+            <h4 class="text-center">Books</h4>
+        </div>
+        
+        
+        <div class="col-md-3 newBookBtnContainer">
+            <md-input-container class="fullwidth">
+                <input mdInput placeholder="Filter Books List" type="text" name="bookSearchTerm" [(ngModel)]="bookSearchTerm">
+            </md-input-container>
+        </div>
+        <div class="col-md-3 col-md-offset-6 newBookBtnContainer">
+            <button md-raised-button class="btn-block" (click)="openCreateDialog()">New Book</button>
+        </div>
+        
+    </div>
+</div>
+
+<div class="row" class="loadingSpinnerContainer" *ngIf="isLoading">
+    <md-progress-spinner class="loadingSpinner" mode="indeterminate"></md-progress-spinner>
+</div>
+
+<div class="container-fluid">
+
+    <div class="row" *ngIf="zeroBooksFound" class="text-center" style="margin-top:15%;">
+        <h1>No Books Found</h1>
+    </div>
+
+    <div class="row" *ngIf="!zeroBooksFound && !isLoading">
+        <div class="col-md-12">
+            <div class="col-md-3 itemBoxOuter" *ngFor="let book of allBooks | bookfilter:bookSearchTerm">
+                <md-card class="itemBox">
+                    <md-card-title (click)="bookDetails(book._id)" class="text-center cardTitle">{{ book.bookName  }}</md-card-title>
+                    <md-card-actions>
+                        <button md-raised-button (click)="openEditDialog(book)" class="editButton">Edit</button>
+                        <button md-raised-button (click)="openDeleteDialog(book)" class="pull-right deleteButton">Delete</button>
+                    </md-card-actions>
+                </md-card>
+            </div>
+        </div>
+    </div>
+
+</div>
+

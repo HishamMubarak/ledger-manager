@@ -1,0 +1,97 @@
+<!-- Add Transaction Form Begins-->
+<form #newTransForm="ngForm" (ngSubmit)="addNewTrans(newTransForm.value)" class="transNotePopup" *ngIf="showNewTransForm">
+  <md-card-title>
+    <md-icon class="pull-right closeBtn" (click)="closeDialog()">clear</md-icon>
+    <br>
+    <h4 class="text-center">Add New Transaction</h4>
+  </md-card-title>
+  <md-input-container class="displayBlock">
+    <input mdInput [mdDatepicker]="picker" placeholder="Choose a date" name="date" [(ngModel)]="currentDate" required>
+    <button mdSuffix [mdDatepickerToggle]="picker"></button>
+  </md-input-container>
+  <md-datepicker #picker></md-datepicker>
+  <md-input-container class="displayBlock">
+    <input mdInput type="text" name="description" placeholder="Description" #description="ngModel" required ngModel>
+  </md-input-container>
+  <md-input-container  class="displayBlock">
+    <input mdInput type="number" name="amount" placeholder="Amount" #amount="ngModel" required ngModel>
+  </md-input-container>
+  <md-radio-group mdInput #amountRadio="ngModel" name="amountRadio" required ngModel>
+    <md-radio-button name="amountRadio" value="credit" class="radioButtons">Credit</md-radio-button>
+    <md-radio-button name="amountRadio" value="debit" class="radioButtons">Debit</md-radio-button>
+  </md-radio-group>
+  <button md-raised-button class="btn-block" [disabled]="!newTransForm.valid">Add Transaction</button>
+</form>
+
+
+
+<!-- Edit Transaction Form Begins-->
+<form #editTransForm="ngForm" (ngSubmit)="editTrans(editTransForm.value)" class="transNotePopup" *ngIf="showEditTransForm">
+  <md-card-title>
+    <md-icon class="pull-right closeBtn" (click)="closeDialog()">clear</md-icon>
+    <br>
+    <h4 class="text-center">Add New Transaction</h4>
+  </md-card-title>
+  <md-input-container class="displayBlock">
+    <input mdInput [mdDatepicker]="picker" placeholder="Choose a date" name="editDate" [(ngModel)]="editDate" required>
+    <button mdSuffix [mdDatepickerToggle]="picker"></button>
+  </md-input-container>
+  <md-datepicker #picker></md-datepicker>
+  <md-input-container class="displayBlock">
+    <input mdInput type="text" name="editDescription" placeholder="Description" [(ngModel)]="editDescription" required>
+  </md-input-container>
+  <md-input-container  class="displayBlock">
+    <input mdInput type="number" name="amount" placeholder="Amount" [(ngModel)]="editAmount" required >
+  </md-input-container>
+  <md-radio-group mdInput [(ngModel)]="editAmountRadio" name="editTransType" required>
+    <md-radio-button name="editTransType" value="credit" class="radioButtons">Credit</md-radio-button>
+    <md-radio-button name="editTransType" value="debit" class="radioButtons">Debit</md-radio-button>
+  </md-radio-group>
+  <button md-raised-button class="btn-block" [disabled]="!editTransForm.valid">Edit Transaction</button>
+</form>
+
+<!-- Delete Transaction Form Begins-->
+<div class="modalPopup" *ngIf="showDeleteTransForm" class="deleteForm">
+  <md-icon class="pull-right closeBtn" (click)="closeDialog()">clear</md-icon>
+  <br>  
+  <md-card-title class="text-center" style="display: block; text-align: center">Delete?</md-card-title>
+  <md-card-subtitle>Are you you sure you want to delete this transaction?</md-card-subtitle>
+  <button md-raised-button (click)="deleteTrans()" class="btn-block">Yes</button>
+  <button md-raised-button (click)="closeDialog()" class="btn-block">No</button>
+</div>
+
+<!-- Add Note Form Begins-->
+<form #newNoteForm="ngForm" (ngSubmit)="addNote(newNoteForm.value)" *ngIf="showNewNoteForm" class="noteAddEditForm">
+  <md-card-title>
+    <md-icon class="pull-right closeBtn" (click)="closeDialog()">clear</md-icon>
+    <br>
+    <h4 class="text-center">Add Note</h4>
+  </md-card-title>
+  <md-input-container class="inputTextField">
+    <textarea mdInput name="noteTextArea" #noteText="ngModel" rows="5" ngModel required></textarea>
+  </md-input-container>
+  <button class="btn-block" md-raised-button [disabled]="!newNoteForm.valid">Submit</button>
+</form>
+
+<!-- Edit Note Form Begins-->
+<form #editNoteForm="ngForm" (ngSubmit)="editNote(editNoteForm.value)" *ngIf="showEditNoteForm" class="noteAddEditForm">
+  <md-card-title>
+    <md-icon class="pull-right closeBtn" (click)="closeDialog()">clear</md-icon>
+    <br>
+    <h4 class="text-center">Edit Note</h4>
+  </md-card-title>
+  <md-input-container class="inputTextField">
+    <textarea mdInput name="editNoteTextArea" rows="5" [(ngModel)]="editNoteTextArea" required></textarea>
+  </md-input-container>
+  <button class="btn-block" md-raised-button [disabled]="!editNoteForm.valid || noteTextBeforeEdit == editNoteTextArea">Submit</button>
+</form>
+
+<!-- Delete Note Form Begins-->
+<div class="modalPopup" *ngIf="showDeleteNoteForm" class="deleteForm">
+  <md-icon class="pull-right closeBtn" (click)="closeDialog()">clear</md-icon>
+  <br>  
+  <md-card-title class="text-center" style="display: block; text-align: center">Delete?</md-card-title>
+  <md-card-subtitle>Are you you sure you want to delete this note?</md-card-subtitle>
+  <button md-raised-button (click)="deleteNote()" class="btn-block">Yes</button>
+  <button md-raised-button (click)="closeDialog()" class="btn-block">No</button>
+</div>

@@ -1,0 +1,27 @@
+<nav md-tab-nav-bar style="margin-bottom:10px;">
+
+  <!-- <a md-tab-link (click)="sidenav.open()">=</a> -->
+
+  <a *ngIf="authService.isLoggedIn()" md-tab-link routerLink="/dashboard">Dashboard</a>
+  <a class="pull-right" *ngIf="authService.isLoggedIn()" md-tab-link (click)="authService.logout()">Logout</a>
+  <a class="pull-right" *ngIf="authService.isLoggedIn()" md-tab-link routerLink="/dashboard/books">Books</a>
+    
+  <a class="pull-right" *ngIf="!authService.isLoggedIn()" md-tab-link routerLink="/register">Register</a>
+  <a class="pull-right" *ngIf="!authService.isLoggedIn()" md-tab-link routerLink="/login">Login</a> 
+  
+
+  <!-- <button type="button" md-button (click)="sidenav.open()">
+    Open sidenav
+  </button> -->
+
+  <!-- <md-sidenav-container class="example-container">
+    <md-sidenav #sidenav class="example-sidenav" mode="over">
+      <div class="sideNavContent">
+        <a>Home</a><br/>
+        <a>Register</a><br/>
+        <a>Logout</a><br/>
+      </div>
+    </md-sidenav>
+  </md-sidenav-container> -->
+
+</nav>

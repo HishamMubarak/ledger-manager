@@ -1,0 +1,37 @@
+<form #newBookForm="ngForm" (ngSubmit)="createBook(newBookForm.value)" *ngIf="showCreateBookDialog" class="crudForm">
+    <md-card-title>
+        <md-icon class="pull-right closeBtn" (click)="closeDialog()">clear</md-icon>
+        <br>
+        <h4 class="text-center">Create New Book</h4>
+    </md-card-title>
+    <md-input-container class="nameInputField">
+        <input mdInput type="text" name="newBookName" placeholder="New Book Name" id="newBookName" [(ngModel)]="newBookName" required>
+    </md-input-container>
+    <button md-raised-button class="btn-block" type="submit" [disabled]="!newBookForm.valid">Submit</button>
+    <md-error *ngIf="enterAnyNewBookName">Should be atleast one charecter.</md-error>
+    <md-error *ngIf="newBookAlreadyExists">This book name already exists.</md-error>
+</form>
+
+
+<form #editBookForm="ngForm" (ngSubmit)="editBook(editBookForm.value)" *ngIf="showUpdateBookDialog" class="crudForm">
+    <md-card-title>
+        <md-icon class="pull-right closeBtn" (click)="closeDialog()">clear</md-icon>
+        <br>
+        <h4 class="text-center">Edit Book Name</h4>
+    </md-card-title>
+    <md-input-container class="nameInputField">
+        <input mdInput placeholder="Enter New Book Name" name="editedName" [(ngModel)]="editBookName" required>
+    </md-input-container>
+    <button md-raised-button class="btn-block" type="submit" [disabled]="!editBookForm.valid || bookNameBeforeEdit == editBookName">Submit</button>
+    <md-error *ngIf="enterAnyEditBookName">Should be atleast one charecter.</md-error>
+    <md-error *ngIf="editBookAlreadyExists">This book name already exists.</md-error>
+</form>
+
+<div class="modalPopup" *ngIf="showDeleteBookDialog" class="crudForm">
+    <md-icon class="pull-right closeBtn" (click)="closeDialog()">clear</md-icon>
+    <br>
+    <md-card-title class="text-center">Delete?</md-card-title>
+    <md-card-subtitle>Are you you sure you want to delete the book titled {{ deleteBookName }}?</md-card-subtitle>
+    <button md-raised-button class="btn-block" (click)="deleteBook()">Yes</button>
+    <button md-raised-button class="btn-block" (click)="closeDialog()">No</button>
+</div>

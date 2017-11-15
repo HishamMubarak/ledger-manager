@@ -1,0 +1,67 @@
+.newBookForm {
+  padding: 20px;
+  margin: 25px 0;
+}
+
+.editBookCard {
+  margin: 10px 0px;
+}
+
+.itemBoxOuter {
+  padding: 0;
+}
+
+.itemBox {
+  border:1px solid #CCCCCC;
+  margin: 5px; 
+}
+
+.itemBox:hover {
+  background: #fcfcfc;
+}
+
+.cardTitle:hover {
+  cursor: pointer;
+}
+
+.editButton {
+  width: 48%;
+}
+
+.closeEditFormBtn:hover {
+  cursor: pointer;
+}
+.editButton:hover {
+  background: #f2f2f2;
+}
+
+.deleteButton {
+  width: 48%;
+  margin: 0 !important;
+}
+
+.deleteButton:hover {
+  background: #f2f2f2;
+}
+
+.fullwidth {
+  display: block;
+}
+
+.newBookBtnContainer {
+  padding: 0 20px !important;
+}
+
+.loadingSpinnerContainer {
+  width: 100%;
+  height: 80vh;
+  padding-top: 20vh;
+}
+
+.loadingSpinner {
+  margin: 0 auto;
+}
+
+.trashHeader {
+  color: #ff3232;
+}

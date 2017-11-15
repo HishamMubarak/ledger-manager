@@ -1,0 +1,53 @@
+.marginFree {
+    margin: 0;
+    padding: 0;
+}
+
+.newAccountForm {
+  border:1px solid #CCCCCC;
+  padding: 20px;
+}
+
+.newAccountBtn {
+  padding: 10px 30px;
+  border-radius: 0px;
+  margin-top: 15px;
+}
+
+.actionIcons {
+  font-size:20px;
+}
+
+.actionIcons:hover {
+  cursor: pointer;
+}
+
+.fullwidth {
+  display: block;
+  padding-top: 5px;
+}
+
+.balanceAmt {
+  margin: 10px 0;
+  text-align: center;
+}
+
+.infoRow {
+  margin-bottom: 25px;
+}
+
+@media screen and (max-width: 480px) {
+    .infoRow {
+        margin-bottom: 0; 
+    }
+}
+
+.loadingSpinnerContainer {
+  width: 100%;
+  height: 80vh;
+  padding-top: 20vh;
+}
+
+.loadingSpinner {
+  margin: 0 auto;
+}

@@ -1,0 +1,17 @@
+  <div class="col-md-4 col-md-offset-4">
+    <form class="form-signin" #loginForm="ngForm" (ngSubmit)="signIn(loginForm.value)">       
+      <h2 class="form-signin-heading text-center">Login</h2>
+
+      <md-input-container class="blockLevel">
+        <input mdInput type="text" name="email" placeholder="Email Address" required="" autofocus="" ngModel required>
+      </md-input-container>
+
+      <md-input-container class="blockLevel"  >
+        <input mdInput type="password" name="password" placeholder="Password" required=""  ngModel required>
+      </md-input-container>
+
+      <button md-raised-button class="btn-block" type="submit" [disabled]="!loginForm.valid">Login</button>
+      <md-error *ngIf="invalidLogin">Invalid username and/or password.</md-error>
+      
+    </form>
+  </div>

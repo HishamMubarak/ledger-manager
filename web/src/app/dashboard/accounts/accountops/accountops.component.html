@@ -1,0 +1,36 @@
+<form #newAccountForm="ngForm" (ngSubmit)="createAccount(newAccountForm.value)" *ngIf="showCreateAccountDialog" class="crudForm">
+  <md-card-title>
+    <md-icon class="pull-right closeBtn" (click)="closeDialog()">clear</md-icon>
+    <br>
+    <h4 class="text-center">Add New Account</h4>
+  </md-card-title>
+  <md-input-container class="inputTextField">
+    <input mdInput type="text"  name="newAccountName" placeholder="New Account Name" [(ngModel)]="newAccountName" required>
+  </md-input-container>
+  <button md-raised-button class="btn-block" type="submit" [disabled]="!newAccountForm.valid">Submit</button>
+  <md-error *ngIf="enterAnyNewAccountName">Should be atleast one charecter.</md-error>
+  <md-error *ngIf="newAccountAlreadyExists">This account name already exists.</md-error>
+</form>
+
+<form #editAccountForm="ngForm" (ngSubmit)="editAccount(editAccountForm.value)" *ngIf="showUpdateAccountDialog" class="crudForm">
+  <md-card-title>
+    <md-icon class="pull-right closeBtn" (click)="closeDialog()">clear</md-icon>
+    <br>
+    <h4 class="text-center">Edit Account Name</h4>
+  </md-card-title>
+  <md-input-container  class="inputTextField">
+    <input mdInput type="text" name="editAccountName" placeholder="Enter New Account Name" [(ngModel)]="editAccountName" required>
+  </md-input-container>
+  <button md-raised-button class="btn-block" type="submit" [disabled]="!editAccountForm.valid || editAccountName == accountNameBeforeEditing">Submit</button>
+  <md-error *ngIf="enterAnyEditAccountName">Should be atleast one charecter.</md-error>
+  <md-error *ngIf="editAccountAlreadyExists">This account name already exists.</md-error>
+</form>
+
+<div class="modalPopup" *ngIf="showDeleteAccountDialog" class="deleteForm">
+  <md-icon class="pull-right closeBtn" (click)="closeDialog()">clear</md-icon>
+  <br>
+  <md-card-title class="text-center" style="display: block;">Delete?</md-card-title>
+  <md-card-subtitle>Are you you sure you want to delete the account titled {{ deleteAccountName }}?</md-card-subtitle>
+  <button md-raised-button class="btn-block" (click)="deleteAccount()">Yes</button>
+  <button md-raised-button class="btn-block" (click)="closeDialog()">No</button>
+</div>

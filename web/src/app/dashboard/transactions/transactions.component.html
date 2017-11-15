@@ -1,0 +1,90 @@
+<div class="container-fluid marginFree">
+
+  <h4 class="text-center"><span class="hoverPointer" 
+    [routerLink]="['/dashboard/books/', bookid]">{{ bookName }}</span> - {{ accountName }}</h4>
+
+  <md-tab-group md-stretch-tabs>
+      <md-tab label="Transactions" >
+
+        <div class="row" style="margin: 5px 10px;">
+          <div class="col-sm-2 col-xs-12 pull-right">
+            <button md-raised-button class="btn-block addTransNoteButton" (click)="openCreateTransDialog()">Add Transaction</button>
+          </div>
+        </div>
+        
+        <div class="row" class="loadingSpinnerContainer" *ngIf="isLoading">
+            <md-progress-spinner class="loadingSpinner" mode="indeterminate"></md-progress-spinner>
+        </div>
+
+        <div class="row" *ngIf="zeroTransFound" class="text-center">
+          <h1>No Transactions Found</h1>
+        </div>
+
+        <div class="table-responsive" *ngIf="!zeroTransFound && !isLoading">
+          <table class="table table-hover table-bordered">
+            <thead>
+              <tr>
+                <th width="15%">Date</th>
+                <th width="30%">Description</th>
+                <th width="15%">Credit</th>
+                <th width="15%">Debit</th>
+                <th width="20%">Balance</th>
+                <th width="5%"></th>
+              </tr>  
+            </thead>
+            <tbody>
+              <tr *ngFor="let trans of transactions; index as i;">
+                <td>{{ trans.date | date:'dd-MM-yyyy'}}</td>
+                <td>{{ trans.description }}</td>
+                <td>{{ trans.creditAmt }}</td>
+                <td>{{ trans.debitAmt }}</td>
+                <td>{{ trans.balance }}</td>
+                <td class="text-center">
+                  <md-icon class="actionIcons" [mdMenuTriggerFor]="menu">more_vert</md-icon>
+                  <md-menu #menu="mdMenu">
+                    <button md-menu-item (click)="openEditTransDialog(trans)">Edit</button>
+                    <button md-menu-item (click)="openDeleteTransDialog(trans)">Delete</button>
+                  </md-menu>
+                </td>
+              </tr>
+            </tbody> 
+          </table>
+        </div> <!-- End Table -->
+
+      </md-tab>
+
+      <md-tab label="Notes">
+        
+        <div class="row" style="margin-top: 25px;">
+          <div class="col-sm-offset-4 col-sm-4 col-xs-12 text-center">
+              <h4 class="notePageTitle" style="display: inline;">{{ notesTitle }}</h4>
+          </div>
+          <div class="col-sm-offset-2 col-sm-1 col-xs-12">
+              <button md-raised-button *ngIf="!showTrash" class="addNoteBtn displayBlock" (click)="openCreateNoteDialog()">Add Note</button>
+          </div>
+          <div class="col-sm-1 col-xs-12">
+              <button md-raised-button class="showDeletedBtn" *ngIf="!showTrash"  (click)="getAllNotes(0)"><md-icon>delete</md-icon></button>
+              <button md-raised-button class="showMainNoteBtn" *ngIf="showTrash" (click)="getAllNotes(1)"><md-icon>event_note</md-icon></button>
+          </div>
+        </div>
+        
+        <div class="row" *ngIf="zeroNotesFound" class="text-center">
+          <h1>No Notes Found</h1>
+        </div>
+
+        <div *ngIf="!zeroNotesFound">
+          <div class="col-md-3 eachCard" *ngFor="let note of allNotes">
+            <md-card>
+              <md-card-content class="lineBrakFix">{{ note.noteText }}</md-card-content>
+              <md-card-actions>
+                <md-icon *ngIf="!showTrash" class="actionIcons" (click)="openEditNoteDialog(note)">create</md-icon>
+                <md-icon *ngIf="!showTrash" class="actionIcons" (click)="openDeleteNoteDialog(note)">clear</md-icon>
+              </md-card-actions>
+            </md-card>
+          </div>
+        </div>
+        
+      </md-tab>
+    </md-tab-group>
+
+</div>

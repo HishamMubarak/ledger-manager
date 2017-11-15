@@ -1,0 +1,27 @@
+  <div class="col-md-4 col-md-offset-4">
+    <form class="form-signup" #signupForm="ngForm" (ngSubmit)="signUp(signupForm.value)">
+      
+      <h2 class="text-center">Register</h2>
+      
+      <md-input-container class="blockDisplay">
+        <input mdInput type="text" name="firstName" placeholder="First Name" required autofocus="" ngModel maxlength="15" required>
+      </md-input-container>
+
+      <md-input-container class="blockDisplay">
+        <input mdInput type="text" name="lastName" placeholder="Last Name" required autofocus="" ngModel maxlength="15" required>
+      </md-input-container>
+      
+      <md-input-container class="blockDisplay">
+        <input mdInput type="text" name="email" placeholder="Email Address" required autofocus="" ngModel 
+        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required>
+      </md-input-container>
+
+      <md-input-container class="blockDisplay">
+        <input mdInput type="password" name="password" placeholder="Password" required  ngModel minlength="6" required>
+      </md-input-container>
+
+      <button md-raised-button class="btn-block" type="submit" [disabled]="!signupForm.valid">Sign Up</button>
+      <md-error *ngIf="invalidSignup">Invalid Username and/or Password.</md-error>
+
+    </form>
+  </div>

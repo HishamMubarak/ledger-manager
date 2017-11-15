@@ -1,0 +1,21 @@
+{
+  "firebase": "app-name",
+  "public": "dist",
+  "ignore": [
+    "firebase.json",
+    "**/.*",
+    "**/node_modules/**"
+  ],
+  "Headers" : [{
+  "key" : "Access-Control-Allow-Origin",
+  "value" : "*"
+  }],
+  "rewrites": [{
+    "source": "/public/**",
+    "destination": "/public.html"
+  },
+  {
+    "source": "**",
+    "destination": "/index.html"
+  }]
+}
