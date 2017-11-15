@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  backednUrl: 'https://pixxekker.com'
+  backednUrl: 'http://localhost:3000'
 };
